@@ -3,7 +3,7 @@
     <el-aside width="200px">
       <!-- 菜单组件 router="true"开启菜单路由模式 -->
       <!-- 在子菜单el-menu-item身上指定index="路由地址" -->
-      <el-menu router="true" class="el-menu-vertical-demo" style="height: 100vh">
+      <el-menu :router="routerFlag" class="el-menu-vertical-demo" style="height: 100vh">
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-upload
@@ -73,6 +73,7 @@ export default {
   name: "HomeView",
   data() {
     return {
+      routerFlag: true,
       account: null
     }
   },
