@@ -15,6 +15,11 @@
               <div class="el-icon-lock"></div>
             </template>
           </el-input>
+          <el-radio-group v-model="account.identity" style="display: flex;justify-content: center;margin-bottom: 20px">
+            <el-radio :label="1">管理员</el-radio>
+            <el-radio :label="2">业务员</el-radio>
+            <el-radio :label="3">租客</el-radio>
+          </el-radio-group>
           <div class="login-submit">
             <el-button type="primary" @click="login">登录</el-button>
           </div>
