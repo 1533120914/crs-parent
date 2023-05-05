@@ -5,4 +5,5 @@ import org.example.entity.Account;
 
 public interface AccountService {
     ResponseData login(Account account);
+    ResponseData modifyPassword(Account account,String oldPassword,String newPassword);
 }

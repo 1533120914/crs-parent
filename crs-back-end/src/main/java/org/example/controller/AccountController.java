@@ -20,4 +20,9 @@ public class AccountController {
     public ResponseData login(Account account) {
         return accountService.login(account);
     }
+
+    @PostMapping("/modify-password")
+    public ResponseData modifyPassword(Account account, String oldPassword,String newPassword) {
+        return accountService.modifyPassword(account,oldPassword,newPassword);
+    }
 }

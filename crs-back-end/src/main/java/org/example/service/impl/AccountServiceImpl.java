@@ -53,4 +53,47 @@ public class AccountServiceImpl implements AccountService {
             }
         }
     }
+
+    @Override
+    public ResponseData modifyPassword(Account account,String oldPassword,String newPassword) {
+        QueryWrapper qw = new QueryWrapper();
+        qw.eq("id", account.getId());
+        Account one = null;
+        switch (account.getIdentity()) {
+            case 1:
+                one = adminMapper.selectOne(qw);
+                break;
+            case 2:
+                one = salesmanMapper.selectOne(qw);
+                break;
+            case 3:
+                one = userMapper.selectOne(qw);
+                break;
+        }
+        if(!one.getPassword().equals(oldPassword)) {
+            throw new CustomException(ResponseEnum.OLD_PASSWORD_INVALID);
+        }else {
+            switch (account.getIdentity()) {
+                case 1:
+                    Admin admin = new Admin();
+                    admin.setId(account.getId());
+                    admin.setPassword(newPassword);
+                    adminMapper.updateById(admin);
+                    break;
+                case 2:
+                    Salesman salesman = new Salesman();
+                    salesman.setId(account.getId());
+                    salesman.setPassword(newPassword);
+                    salesmanMapper.updateById(salesman);
+                    break;
+                case 3:
+                    User user = new User();
+                    user.setId(account.getId());
+                    user.setPassword(newPassword);
+                    userMapper.updateById(user);
+                    break;
+            }
+        }
+        return ResponseData.success();
+    }
 }

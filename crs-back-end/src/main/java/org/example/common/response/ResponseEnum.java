@@ -11,6 +11,7 @@ public enum ResponseEnum {
     SERVER_ERROR("000002", "服务器异常"),
     USER_NOT_EXIST("000003", "用户不存在!"),
     PASSWORD_INVALID("000004", "密码错误!"),
+    OLD_PASSWORD_INVALID("000004", "原密码错误!"),
     TOKEN_INVALID("000005", "Token失效,3秒后自动跳转到登录页");
 
     private String code;

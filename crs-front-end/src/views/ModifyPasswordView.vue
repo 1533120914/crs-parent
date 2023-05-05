@@ -44,7 +44,19 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-
+          // 把用户id和identity一起放入formData发给后端
+          this.formData.id = this.account.id
+          this.formData.identity = this.account.identity
+          this.$http.post('/account/modify-password', this.formData)
+          .then((data) => {
+            localStorage.removeItem('account')
+            this.$msgbox.alert('请重新登录', '密码修改成功', {
+              confirmButtonText: '确定',
+              callback: action => {
+                this.$router.push('/')
+              }
+            })
+          })
         } else {
           return false;
         }
