@@ -41,7 +41,7 @@
         <el-table-column label="操作" min-width="300px" v-if="account.identity==1">
           <template v-slot="scope">
             <el-button size="mini">查看详情</el-button>
-            <el-button type="danger" size="mini">删除</el-button>
+            <el-button type="danger" size="mini" @click="handleDelete(scope.row.id)">删除</el-button>
             <el-button type="primary" v-if="scope.row.state==0" size="mini">租赁</el-button>
             <el-button type="success" v-if="scope.row.state==1" size="mini">归还</el-button>
           </template>
@@ -117,6 +117,18 @@ export default {
         this.tableData = data.records
         this.total = data.total
         this.pages = data.pages
+      })
+    },
+    handleDelete(id) {
+      this.$confirm('是否确认删除?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消'
+      }).then(() => {
+        this.$http.get('/car/del/' + id)
+            .then((data) => {
+              // 删除后的回调函数中从新调用getTableData函数查询一次, 即可刷新表格
+              this.getTableData()
+            })
       })
     },
     // 当页码current改变时的回调行数

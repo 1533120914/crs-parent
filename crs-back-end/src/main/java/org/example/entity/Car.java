@@ -1,7 +1,6 @@
 package org.example.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -18,6 +17,10 @@ public class Car {
     private Double oilWear;
     private Double dailyRent;
     private Integer state;
+    @TableLogic // 逻辑删除
+    private Integer isDelete;
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDate;
+    @TableField(fill = FieldFill.UPDATE)
     private LocalDateTime modifyDate;
 }
