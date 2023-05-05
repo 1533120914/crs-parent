@@ -6,7 +6,6 @@
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-upload
-              style="background-color: #409EFF"
               class="avatar-uploader"
               action="http://localhost:8888/file/upload/avatar"
               :data="account"
@@ -85,6 +84,7 @@ export default {
     },
     handleAvatarUploadSuccess(response) {
       this.account.avatar = response.data
+      localStorage.setItem('account', JSON.stringify(this.account))
     }
   },
   computed: {
@@ -113,14 +113,15 @@ export default {
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  width: 100px;
-  height: 100px;
-  line-height: 100px;
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
   text-align: center;
 }
 .avatar {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   display: block;
+  box-shadow: 0px 0px 5px #8c939d;
 }
 </style>
