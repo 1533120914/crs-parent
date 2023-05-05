@@ -137,10 +137,13 @@ export default {
     }
   },
   created() {
+    // 组件创建成功后
+    // 1. 获取当前账户
     this.account = JSON.parse(localStorage.getItem('account'))
+    // 2. 加载品牌列表 (绑定品牌下拉框)
     this.getBrandList()
+    // 3. 加载汽车列表 (绑定汽车表格)
     this.getTableData()
-    console.log(this.account)
   },
 }
 </script>
