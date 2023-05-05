@@ -47,7 +47,7 @@
         </el-menu-item>
         <el-menu-item>
           <i class="el-icon-menu"></i>
-          <span slot="title">退出系统</span>
+          <span slot="title" @click="logout">退出系统</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -68,7 +68,10 @@ export default {
     }
   },
   methods: {
-
+    logout() {
+      // 回到登录界面
+      this.$router.push('/')
+    }
   },
   created() {
     // 立刻从localStorage读取当前用户
