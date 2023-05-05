@@ -6,7 +6,12 @@
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-avatar size="large" :src="account.avatar"></el-avatar>
-          <div style="font-size: 16px;font-weight: bold; color: #409EFF;margin-top: 15px">欢迎:{{ account.username}} </div>
+          <div style="font-size: 16px;font-weight: bold; color: #409EFF;margin-top: 15px">
+            <span v-if="account.identity==1">管理员:</span>
+            <span v-if="account.identity==2">业务员:</span>
+            <span v-if="account.identity==3">租客:</span>
+            {{ account.username}}
+          </div>
         </div>
         <el-menu-item v-if="account.identity==1">
           <i class="el-icon-menu"></i>
