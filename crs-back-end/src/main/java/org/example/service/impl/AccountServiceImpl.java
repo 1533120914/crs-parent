@@ -70,9 +70,12 @@ public class AccountServiceImpl implements AccountService {
                 one = userMapper.selectOne(qw);
                 break;
         }
+        // 先判断原密码是否正确
         if(!one.getPassword().equals(oldPassword)) {
+            // 原密码错误直接抛出异常
             throw new CustomException(ResponseEnum.OLD_PASSWORD_INVALID);
         }else {
+            // 原密码正确更新密码
             switch (account.getIdentity()) {
                 case 1:
                     Admin admin = new Admin();

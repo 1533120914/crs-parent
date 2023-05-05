@@ -21,8 +21,15 @@ public class AccountController {
         return accountService.login(account);
     }
 
+    /**
+     *
+     * @param account 接收用户id和identity
+     * @param oldPassword 接收原密码
+     * @param newPassword 接收新密码
+     * @return
+     */
     @PostMapping("/modify-password")
-    public ResponseData modifyPassword(Account account, String oldPassword,String newPassword) {
+    public ResponseData modifyPassword(Account account, String oldPassword, String newPassword) {
         return accountService.modifyPassword(account,oldPassword,newPassword);
     }
 }

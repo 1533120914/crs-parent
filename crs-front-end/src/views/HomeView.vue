@@ -26,7 +26,7 @@
           <i class="el-icon-menu"></i>
           <span slot="title">汽车品牌</span>
         </el-menu-item>
-        <el-menu-item>
+        <el-menu-item index="/car">
           <i class="el-icon-menu"></i>
           <span slot="title">汽车查询</span>
         </el-menu-item>

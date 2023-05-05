@@ -4,6 +4,7 @@ import {MessageBox} from "element-ui";
 import LoginView from "@/views/LoginView";
 import HomeView from "@/views/HomeView";
 import ModifyPasswordView from "@/views/ModifyPasswordView";
+import CarTableView from "@/views/car/CarTableView";
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,6 +12,7 @@ const routes = [
   { path:'/home', component: HomeView, children: [
       //注册为home的子路由
       { path:'/modify-password', component: ModifyPasswordView},
+      { path:'/car', component: CarTableView}
     ]},
 
 ]
