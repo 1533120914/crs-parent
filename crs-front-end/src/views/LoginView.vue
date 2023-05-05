@@ -28,7 +28,7 @@
           </el-form-item>
           <div class="login-submit">
             <el-button type="primary" @click="submitForm('form')">登录</el-button>
-          </div class="login-submit">
+          </div>
         </el-form>
       </div>
     </el-card>
@@ -58,10 +58,17 @@ export default {
 
   methods: {
     submitForm(formName) {
+      // 根据传过来的form名称寻找这个form,然后调用validate函数进行校验 (根据rules)
+      // valid是校验结果
       this.$refs[formName].validate((valid) => {
         if (valid) {
+          // 执行登录
+          this.$http.post('/account/login', this.account)
+          .then((data) => {
 
+          })
         } else {
+          // 不执行
           return false;
         }
       });
