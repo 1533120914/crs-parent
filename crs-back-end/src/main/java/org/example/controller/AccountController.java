@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.common.response.ResponseData;
+import org.example.entity.Account;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
     @PostMapping("/login")
-    public ResponseData login() {
+    public ResponseData login(Account account) {
 
         return null;
     }
