@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {MessageBox} from "element-ui";
 import LoginView from "@/views/LoginView";
 import HomeView from "@/views/HomeView";
-import {MessageBox} from "element-ui";
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,6 +18,10 @@ const router = new VueRouter({
 })
 
 // 路由守卫 (路由拦截器, 拦截每一次的路由请求, 不要与http的拦截器搞混了)
+// beforeEach()这个函数在进入每个路由之前触发
+// to 是要去的路由对象
+// from 是从哪来的路由对象
+// next 是函数 next()放行 next('路由地址')去指定的路由地址
 router.beforeEach((to, from, next) => {
   // 如果要去的路由地址是'/' (去登录界面)
   if (to.path == '/') {
