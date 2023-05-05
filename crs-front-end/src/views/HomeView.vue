@@ -4,7 +4,7 @@
     <!-- 菜单组件 -->
       <el-menu class="el-menu-vertical-demo" style="height: 100vh">
         <!-- 用户头像 -->
-        <div style="display: flex; flex-direction: column; align-items: center">
+        <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-avatar size="large" :src="account.avatar"></el-avatar>
           <div style="font-size: 16px;font-weight: bold; color: #409EFF;margin-top: 15px">欢迎:{{ account.username}} </div>
         </div>
