@@ -1,11 +1,13 @@
 <template>
   <el-container>
     <el-aside width="200px">
-      <div style="display: flex; flex-direction: column; align-items: center">
-        <el-avatar size="large" :src="account.avatar"></el-avatar>
-        <div style="font-size: 24px;font-weight: bold; color: #409EFF;margin-top: 15px">欢迎:{{ account.username}} </div>
-      </div>
+    <!-- 菜单组件 -->
       <el-menu class="el-menu-vertical-demo" style="height: 100vh">
+        <!-- 用户头像 -->
+        <div style="display: flex; flex-direction: column; align-items: center">
+          <el-avatar size="large" :src="account.avatar"></el-avatar>
+          <div style="font-size: 16px;font-weight: bold; color: #409EFF;margin-top: 15px">欢迎:{{ account.username}} </div>
+        </div>
         <el-menu-item v-if="account.identity==1">
           <i class="el-icon-menu"></i>
           <span slot="title">汽车品牌</span>
@@ -44,7 +46,9 @@
         </el-menu-item>
       </el-menu>
     </el-aside>
-    <el-main>
+    <!-- 右侧主体 -->
+    <el-main style="background-color: #f1f1f1; padding: 20px">
+      <!-- 放一个子路由挂载器 -->
       <router-view/>
     </el-main>
   </el-container>
@@ -61,7 +65,8 @@ export default {
   methods: {
 
   },
-  mounted() {
+  created() {
+    // 立刻从localStorage读取当前用户
     this.account = JSON.parse(localStorage.getItem('account'))
   }
 }

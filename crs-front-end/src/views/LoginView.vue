@@ -65,7 +65,9 @@ export default {
           // 执行登录
           this.$http.post('/account/login', this.account)
           .then((data) => {  //data就是返回的account对象
+            // 存储当前用户到localStorage
             localStorage.setItem('account', JSON.stringify(data))
+            // 跳转到主页
             this.$router.push('/home')
           })
         } else {
