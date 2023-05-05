@@ -5,7 +5,15 @@
       <el-menu class="el-menu-vertical-demo" style="height: 100vh">
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
-          <el-avatar size="large" :src="account.avatar"></el-avatar>
+          <el-upload
+              class="avatar-uploader"
+              action="http://localhost:8888/file/upload/avatar"
+              :data="account"
+              :on-success="handleAvatarUploadSuccess"
+              :show-file-list="false">
+            <img v-if="account.avatar" :src="avatar" class="avatar">
+            <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
           <div style="font-size: 16px;font-weight: bold; color: #409EFF;margin-top: 15px">
             <span v-if="account.identity==1">管理员:</span>
             <span v-if="account.identity==2">业务员:</span>
@@ -69,8 +77,18 @@ export default {
   },
   methods: {
     logout() {
+      // 销毁存储的account
+      localStorage.removeItem('account')
       // 回到登录界面
       this.$router.push('/')
+    },
+    handleAvatarUploadSuccess(response) {
+      this.account.avatar = response.data
+    }
+  },
+  computed: {
+    avatar() {
+      return 'http://localhost:8888/file/download/avatar?fileName=' + this.account.avatar
     }
   },
   created() {
@@ -81,5 +99,27 @@ export default {
 </script>
 
 <style scoped>
-
+.avatar-uploader .el-upload {
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409EFF;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+}
+.avatar {
+  width: 100px;
+  height: 100px;
+  display: block;
+}
 </style>
