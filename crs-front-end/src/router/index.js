@@ -17,20 +17,26 @@ const router = new VueRouter({
   routes
 })
 
+// 路由守卫 (路由拦截器, 拦截每一次的路由请求, 不要与http的拦截器搞混了)
 router.beforeEach((to, from, next) => {
-  let account = localStorage.getItem('account');
+  // 如果要去的路由地址是'/' (去登录界面)
   if (to.path == '/') {
-    next()
+    next() // 直接放行
     return
   }
-  if (account == null){
+  // 如果不是去登录界面, 就要校验他有没有登录
+  // 1. 从存储中获取account
+  let account = localStorage.getItem('account');
+  // 2. 判断account是否为null
+  if (account == null){ // account为null
     MessageBox.alert('请重新登录', '登录过期', {
       confirmButtonText: '确定',
       callback: action => {
+        // 点确定后, 跳转去登录界面
         next('/')
       }
     })
-  }else {
+  }else { // account不为null, 直接放行
     next();
   }
 })
