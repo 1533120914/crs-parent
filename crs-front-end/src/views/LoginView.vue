@@ -3,26 +3,32 @@
     <el-card class="box-card">
       <div class="login-body">
         <div class="login-title">蔚来汽车租赁系统</div>
-        <el-form ref="form" :model="account">
-          <el-input placeholder="请输入登录名..." v-model="account.username" class="login-input">
-            <template slot="prepend">
-              <div class="el-icon-user-solid"></div>
-            </template>
-          </el-input>
-          <el-input placeholder="请输入密码..." v-model="account.password" class="login-input"
-                    @keyup.enter.native="login"  show-password>
-            <template slot="prepend">
-              <div class="el-icon-lock"></div>
-            </template>
-          </el-input>
-          <el-radio-group v-model="account.identity" style="display: flex;justify-content: center;margin-bottom: 20px">
-            <el-radio :label="1">管理员</el-radio>
-            <el-radio :label="2">业务员</el-radio>
-            <el-radio :label="3">租客</el-radio>
-          </el-radio-group>
+        <el-form ref="form" :model="account" :rules="rules">
+          <el-form-item prop="username">
+            <el-input placeholder="请输入登录名..." v-model="account.username">
+              <template slot="prepend">
+                <div class="el-icon-user-solid"></div>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item prop="password">
+            <el-input placeholder="请输入密码..." v-model="account.password"
+                      @keyup.enter.native="submitForm('form')"  show-password>
+              <template slot="prepend">
+                <div class="el-icon-lock"></div>
+              </template>
+            </el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-radio-group v-model="account.identity" style="display: flex;justify-content: center;margin-bottom: 20px">
+              <el-radio :label="1">管理员</el-radio>
+              <el-radio :label="2">业务员</el-radio>
+              <el-radio :label="3">租客</el-radio>
+            </el-radio-group>
+          </el-form-item>
           <div class="login-submit">
-            <el-button type="primary" @click="login">登录</el-button>
-          </div>
+            <el-button type="primary" @click="submitForm('form')">登录</el-button>
+          </div class="login-submit">
         </el-form>
       </div>
     </el-card>
@@ -37,16 +43,27 @@ export default {
       account: {
         username: null,
         password: null,
-        identity: null
+        identity: 1
+      },
+      rules: {
+        username: [
+          { required:true, message:'请输入登录名', trigger:'blur'}
+        ],
+        password: [
+          { required:true, message:'请输入密码', trigger:'blur'}
+        ]
       }
     };
   },
 
   methods: {
-    login() {
-      this.$http.post('/user/login', this.account).then(data => {
-        localStorage.setItem('user', JSON.stringify(data))
-        this.$router.push('/home')
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+
+        } else {
+          return false;
+        }
       });
     }
   }
@@ -78,9 +95,6 @@ export default {
   cursor: pointer;
 }
 
-.login-input {
-  margin-bottom: 20px;
-}
 
 .login-submit {
   display: flex;
