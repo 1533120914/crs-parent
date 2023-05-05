@@ -36,6 +36,11 @@ public class FileController {
 
     @PostMapping("/upload/avatar")
     public ResponseData avatar(Account account, MultipartFile file) throws IOException {
+        // 防止存储头像的目录不存在
+        File folder = new File(userAvatarSavePath);
+        if( !folder.exists() ) {
+            folder.mkdirs();
+        }
         // 生成唯一文件名
         String fileName = UUIDUtil.uniqueFileName(file.getOriginalFilename());
         // 创建磁盘文件对象

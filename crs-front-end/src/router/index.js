@@ -3,11 +3,15 @@ import VueRouter from 'vue-router'
 import {MessageBox} from "element-ui";
 import LoginView from "@/views/LoginView";
 import HomeView from "@/views/HomeView";
+import ModifyPasswordView from "@/views/ModifyPasswordView";
 Vue.use(VueRouter)
 
 const routes = [
   { path:'/', component: LoginView},
-  { path:'/home', component: HomeView},
+  { path:'/home', component: HomeView, children: [
+      //注册为home的子路由
+      { path:'/modify-password', component: ModifyPasswordView},
+    ]},
 
 ]
 

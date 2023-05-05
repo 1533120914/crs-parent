@@ -1,8 +1,9 @@
 <template>
   <el-container>
     <el-aside width="200px">
-    <!-- 菜单组件 -->
-      <el-menu class="el-menu-vertical-demo" style="height: 100vh">
+      <!-- 菜单组件 router="true"开启菜单路由模式 -->
+      <!-- 在子菜单el-menu-item身上指定index="路由地址" -->
+      <el-menu router="true" class="el-menu-vertical-demo" style="height: 100vh">
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-upload
@@ -49,7 +50,7 @@
           <i class="el-icon-menu"></i>
           <span slot="title">个人信息</span>
         </el-menu-item>
-        <el-menu-item>
+        <el-menu-item index="/modify-password">
           <i class="el-icon-menu"></i>
           <span slot="title">修改密码</span>
         </el-menu-item>
