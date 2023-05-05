@@ -18,6 +18,7 @@ public class Car {
     private Double dailyRent;
     private Integer state;
     @TableLogic // 逻辑删除
+    @TableField(fill = FieldFill.INSERT)
     private Integer isDelete;
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createDate;

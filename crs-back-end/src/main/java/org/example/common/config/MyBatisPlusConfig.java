@@ -23,6 +23,7 @@ public class MyBatisPlusConfig implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
         this.strictInsertFill(metaObject, "createDate", LocalDateTime.class, LocalDateTime.now());
+        this.strictInsertFill(metaObject, "isDelete", Integer.class, 0);
     }
 
     @Override
