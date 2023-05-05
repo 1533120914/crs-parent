@@ -40,7 +40,7 @@
         <el-table-column prop="dailyRent" label="日租金" min-width="150"></el-table-column>
         <el-table-column label="操作" min-width="300px" v-if="account.identity==1">
           <template v-slot="scope">
-            <el-button size="mini">查看详情</el-button>
+            <el-button size="mini" @click="$router.push('/car/detail/' + scope.row.id)">查看详情</el-button>
             <el-button type="danger" size="mini" @click="handleDelete(scope.row.id)">删除</el-button>
             <el-button type="primary" v-if="scope.row.state==0" size="mini">租赁</el-button>
             <el-button type="success" v-if="scope.row.state==1" size="mini">归还</el-button>
@@ -48,14 +48,14 @@
         </el-table-column>
         <el-table-column label="操作" min-width="300px" v-if="account.identity==2">
           <template v-slot="scope">
-            <el-button size="mini">查看详情</el-button>
+            <el-button size="mini" @click="$router.push('/car/detail/' + scope.row.id)">查看详情</el-button>
             <el-button type="primary" v-if="scope.row.state==0" size="mini">租赁</el-button>
             <el-button type="success" v-if="scope.row.state==1" size="mini">归还</el-button>
           </template>
         </el-table-column>
         <el-table-column label="操作" min-width="300px" v-if="account.identity==3">
           <template v-slot="scope">
-            <el-button size="mini">查看详情</el-button>
+            <el-button size="mini" @click="$router.push('/car/detail/' + scope.row.id)">查看详情</el-button>
           </template>
         </el-table-column>
       </el-table>

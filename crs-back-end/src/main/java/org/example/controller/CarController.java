@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/car")
@@ -64,6 +67,18 @@ public class CarController {
         return ResponseData.success();
     }
 
+    @GetMapping("/detail/{id}")
+    public ResponseData detail(@PathVariable("id") Integer id) {
+        Car car = carMapper.selectById(id);
+        QueryWrapper qw = new QueryWrapper();
+        qw.eq("car_id", id);
+        List list = carPictureMapper.selectList(qw);
+        Map<String, Object> map = new HashMap<>();
+        map.put("car", car);
+        map.put("pictureList", list);
+        return ResponseData.success(map);
+    }
+
     @GetMapping("/picture/del/{id}")
     public ResponseData deleteImage(@PathVariable("id") Integer id) {
         carPictureMapper.deleteById(id);
@@ -85,7 +100,7 @@ public class CarController {
         carPictureMapper.insert(carPicture);
         return ResponseData.success(carPicture);
     }
-    @GetMapping("/picture/dowload")
+    @GetMapping("/picture/download")
     public void download(String fileName, HttpServletResponse response) throws IOException {
         // 根据文件名下载文件
         OutputStream os = response.getOutputStream();

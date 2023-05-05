@@ -6,6 +6,7 @@ import HomeView from "@/views/HomeView";
 import ModifyPasswordView from "@/views/ModifyPasswordView";
 import CarTableView from "@/views/car/CarTableView";
 import SaveCarView from "@/views/car/SaveCarView";
+import CarDetailView from "@/views/car/CarDetailView";
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,7 +15,8 @@ const routes = [
       //注册为home的子路由
       { path:'/modify-password', component: ModifyPasswordView},
       { path:'/car', component: CarTableView},
-      { path:'/car/save', component: SaveCarView}
+      { path:'/car/save', component: SaveCarView},
+      { path:'/car/detail/:id', component: CarDetailView}
     ]},
 
 ]
