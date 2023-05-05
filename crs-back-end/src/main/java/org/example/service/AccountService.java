@@ -1,5 +1,8 @@
 package org.example.service;
 
-public interface AccountService {
+import org.example.common.response.ResponseData;
+import org.example.entity.Account;
 
+public interface AccountService {
+    ResponseData login(Account account);
 }
