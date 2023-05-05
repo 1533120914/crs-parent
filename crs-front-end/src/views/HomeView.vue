@@ -5,7 +5,7 @@
       <!-- 在子菜单el-menu-item身上指定index="路由地址" -->
       <el-menu :router="routerFlag" class="el-menu-vertical-demo" style="height: 100vh">
         <!-- 用户头像 -->
-        <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
+        <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px">
           <el-upload
               class="avatar-uploader"
               action="http://localhost:8888/file/upload/avatar"

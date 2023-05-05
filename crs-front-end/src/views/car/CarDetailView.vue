@@ -85,7 +85,10 @@
       <div slot="header" style="display: flex; justify-content: space-between;align-items: center">
         <span>汽车图片</span>
       </div>
-      <div>
+      <div v-if="pictures.length == 0">
+        <el-empty description="暂无图片"></el-empty>
+      </div>
+      <div v-else>
         <el-image style="width: 100px; height: 100px; margin: 10px" v-for="picture in pictures" :src="picture.url"></el-image>
       </div>
     </el-card>
