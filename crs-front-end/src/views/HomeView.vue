@@ -6,6 +6,7 @@
         <!-- 用户头像 -->
         <div style="display: flex; flex-direction: column; align-items: center;padding: 20px 0px;border-bottom: 1px solid #409EFF">
           <el-upload
+              style="background-color: #409EFF"
               class="avatar-uploader"
               action="http://localhost:8888/file/upload/avatar"
               :data="account"
