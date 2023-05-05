@@ -64,8 +64,9 @@ export default {
         if (valid) {
           // 执行登录
           this.$http.post('/account/login', this.account)
-          .then((data) => {
-
+          .then((data) => {  //data就是返回的account对象
+            localStorage.setItem('account', JSON.stringify(data))
+            this.$router.push('/home')
           })
         } else {
           // 不执行
